@@ -12,19 +12,16 @@ result();
 
 //2)Convert all the strings to title caps in a string array
 
-
-var stringArray = ["hello world", "this is a test", "javascript is fun"];
-
-
-var titleCasedArray = (function(arr) {
-    return arr.map(function(str) {
-        return str.split(' ').map(function(word) {
-            return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-        }).join(' ');
-    });
-})(stringArray);
-
-console.log(titleCasedArray);
+var strArray = ["cat","dog","cow"];
+var capArray = [];
+for(var i=0;i<strArray.length;i++){
+    const res = function(txt){
+        var ans =  txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
+        capArray.push(ans);
+    }
+    res(strArray[i]);
+}
+console.log(capArray);
 
 //3)Sum of all numbers in an array
 
@@ -55,11 +52,17 @@ var isPrime = function(num) {
 };
 
 
-var primeNumbers = numberArray.filter(function(num) {
-    return isPrime(num);
-});
+var primeNumbers = function(arr) {
+    const primes = [];
+    for (let num of numberArray) {
+      if (isPrime(num)) {
+        primes.push(num);
+      }
+    }
+    return primes;
+  }
 
-console.log(primeNumbers); 
+console.log(primeNumbers()); 
 
 //5)Return all the palindromes in an array
 
@@ -74,9 +77,13 @@ var isPalindrome = function(str) {
 };
 
 
-var palindromes = strArray.filter(function(str) {
-    return isPalindrome(str);
-});
+var palindromes = [];
+
+for (var i = 0; i < strArray.length; i++) {
+    if (isPalindrome(strArray[i])) {
+        palindromes.push(strArray[i]);
+    }
+}
 
 console.log(palindromes); 
 
@@ -110,14 +117,25 @@ console.log(medianOfTwoSortedArrays);
 
 var arrayWithDuplicates = [1, 2, 3, 4, 2, 3, 5, 6, 1];
 
-
 var uniqueArray = (function(arr) {
-    return arr.filter(function(item, index) {
-        return arr.indexOf(item) === index;
-    });
+    var result = [];
+    for (var i = 0; i < arr.length; i++) {
+        var item = arr[i];
+        var found = false;
+        for (var j = 0; j < result.length; j++) {
+            if (result[j] === item) {
+                found = true;
+                break;
+            }
+        }
+        if (found==false) {
+            result.push(item);
+        }
+    }
+    return result;
 })(arrayWithDuplicates);
 
-console.log(uniqueArray); 
+console.log(uniqueArray); // Output: [1, 2, 3, 4, 5, 6]
 
 //8)Rotate an array by k times
 
