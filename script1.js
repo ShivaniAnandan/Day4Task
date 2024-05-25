@@ -135,7 +135,7 @@ var uniqueArray = (function(arr) {
     return result;
 })(arrayWithDuplicates);
 
-console.log(uniqueArray); // Output: [1, 2, 3, 4, 5, 6]
+console.log(uniqueArray); 
 
 //8)Rotate an array by k times
 
